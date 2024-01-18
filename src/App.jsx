@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import Header from './components/header'
+import DetailTable from './components/detailTable'
 
 function App() {
 
   return (
-      <div>
-        <Header/>
-       <h1>Hellooo</h1>
-      </div>
+    <div>
+      <Header />
+      <DetailTable />
+    </div>
   )
 }
 
