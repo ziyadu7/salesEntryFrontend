@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (max-width: 906px) {
+    .Actions {
+      display: block;
+    }
+  }
+@media screen and (min-width: 906px) {
+    .buttons {
+      display: block;
+    }
+  }
+@media screen and (max-width: 906px) {
+    .buttonsParent {   
+        width: 15rem;
+    }
+  }
+@media screen and (min-width: 906px) {
+    .buttonsParent {   
+        width: 5rem;
+    }
+  }
+
+  @media screen and (min-width: 906px) {
+    .Actions {
+      display: flex;
+    }
+  }
