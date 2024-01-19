@@ -6,13 +6,14 @@ import errorHandling from '../helper/errorHandling'
 function AddItem({ setShowModal }) {
 
     const [item, setItem] = useState('')
+    const [price,setPrice] = useState('')
     const [err, setErr] = useState('')
     const addItem = () => {
         setErr('')
-        if (item.trim().length == 0) {
+        if (item.trim().length == 0||price==0||price.trim().length==0) {
             setErr('Fill the field')
         } else {
-            axiosInstance.post('/addItem', { item }).then(res => {
+            axiosInstance.post('/addItem', { item, price }).then(res => {
                 toast.success(res?.data?.message)
                 setShowModal(false)
             }).catch(err => {
@@ -31,8 +32,17 @@ function AddItem({ setShowModal }) {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="item"
                             type="text"
-                            placeholder="Enter item name"
+                            placeholder="Enter Item name"
                             onChange={(e)=>setItem(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <input
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="item"
+                            type="number"
+                            placeholder="Enter Item Price"
+                            onChange={(e)=>setPrice(e.target.value)}
                         />
                     </div>
                     <p className='text-red-500 text-center font-extralight'>{err}</p>
