@@ -33,6 +33,7 @@ function AddItem({ setShowModal }) {
                             id="item"
                             type="text"
                             placeholder="Enter item name"
+                            onChange={(e)=>setItem(e.target.value)}
                         />
                     </div>
                     <p className='text-red-500 text-center font-extralight'>{err}</p>
