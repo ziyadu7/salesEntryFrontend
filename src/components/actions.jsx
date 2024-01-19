@@ -15,6 +15,9 @@ function Actions() {
             <div className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
                 Print
             </div>
+            <div className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
+                Add Item
+            </div>
         </div>
     )
 }
