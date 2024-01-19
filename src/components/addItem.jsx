@@ -7,7 +7,6 @@ function AddItem({ setShowModal }) {
 
     const [item, setItem] = useState('')
     const [err, setErr] = useState('')
-
     const addItem = () => {
         setErr('')
         if (item.trim().length == 0) {
