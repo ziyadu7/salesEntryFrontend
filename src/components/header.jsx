@@ -15,22 +15,18 @@ function Header({setSearch,searchData}) {
                         <input type="Date" disabled className=' ms-1 border-black border-2' />
                     </div>
                     <div className='flex'>
-                        <label htmlFor="">Status :- </label>
-                        <select name="" className='w-16 ms-1 border-black border-2' id="">
-                            <option selected value="">A</option>
-                            <option value="">I</option>
-                        </select>
+                        <label htmlFor="">Status :- A</label>
                     </div>
 
                 </div>
                 <div className='flex gap-5 justify-center md:gap-16 pt-5'>
                     <div className='flex'>
                         <label htmlFor="">Ac Name : </label>
-                        <input type="text" className=' w-96 ms-1 border-black border-2' />
+                        <input type="text" disabled className=' w-96 ms-1 border-black border-2' />
                     </div>
                     <div className='flex'>
                         <label htmlFor="">Ac Amt </label>
-                        <input type="text" className='w-16 ms-1 border-black border-2' />
+                        <input type="text" disabled className='w-16 ms-1 border-black border-2' />
                     </div>
                 </div>
                 <div className='flex justify-center gap-2 pt-5'>

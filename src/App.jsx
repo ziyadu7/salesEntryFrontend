@@ -20,7 +20,7 @@ function App() {
   return (
     <div className='Actions'>
       <div className='w-full'>
-        <Header setSearch={setSearch} searchData={searchData} />
+        <Header setSearch={setSearch} head={details?.header} searchData={searchData} />
         <DetailTable details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
