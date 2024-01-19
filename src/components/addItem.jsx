@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import axiosInstance from '../axios/axios'
+import toast from 'react-hot-toast'
+import errorHandling from '../helper/errorHandling'
 
 function AddItem({ setShowModal }) {
 
-    const [item,setItem] = useState('')
-    const [err,setErr] = useState('')
+    const [item, setItem] = useState('')
+    const [err, setErr] = useState('')
 
-    const addItem = ()=>{
+    const addItem = () => {
         setErr('')
-        if(item.trim().length==0){
+        if (item.trim().length == 0) {
             setErr('Fill the field')
-        }else{
-            axiosInstance.post('/addItem',{item}).then(res=>{
-                console.log(res);
-            }).catch(err=>{
-                console.log(err);
+        } else {
+            axiosInstance.post('/addItem', { item }).then(res => {
+                toast.success(res?.data?.message)
+                setShowModal(false)
+            }).catch(err => {
+                setShowModal(false)
+                errorHandling(err)
             })
         }
     }
@@ -31,9 +35,9 @@ function AddItem({ setShowModal }) {
                             placeholder="Enter item name"
                         />
                     </div>
+                    <p className='text-red-500 text-center font-extralight'>{err}</p>
                 </div>
             </div>
-
             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                 <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -45,7 +49,7 @@ function AddItem({ setShowModal }) {
                 <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() =>''}
+                    onClick={addItem}
                 >
                     Add item
                 </button>
