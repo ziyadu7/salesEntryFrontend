@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header() {
+function Header({setSearch,searchData}) {
     return (
         <div>
             <h1 className='w-full bg-yellow-300 border-b-2 border-black text-center font-semibold mb-2'>Header</h1>
@@ -35,10 +35,10 @@ function Header() {
                 </div>
                 <div className='flex justify-center gap-2 pt-5'>
                     <div className='flex'>
-                        <input type="text" placeholder='Enter vrNo' className='ms-1 border-black border-2' />
+                        <input type="number" onChange={(e)=>setSearch(e.target.value)} placeholder='Enter vrNo' className='ms-1 border-black border-2' />
                     </div>
                     <div>
-                        <button className='rounded-sm bg-blue-500 px-2 py-1 '>Search</button>
+                        <button onClick={()=>searchData()} className='rounded-sm bg-blue-500 px-2 py-1 '>Search</button>
                     </div>
                 </div>
             </div>
