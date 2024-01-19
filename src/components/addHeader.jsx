@@ -3,7 +3,7 @@ import axiosInstance from '../axios/axios'
 import toast from 'react-hot-toast'
 import errorFunction from '../helper/errorHandling'
 
-function AddHeader({ setShowModal, setHead }) {
+function AddHeader({ setShowModal, setHead, setDetails }) {
 
     const [accName, setAccName] = useState('')
     const [status, setStatus] = useState('')
@@ -16,6 +16,7 @@ function AddHeader({ setShowModal, setHead }) {
             axiosInstance.post('/addHeader',{status,accName}).then(res=>{
                 toast.success(res?.data?.message)
                 setHead(res?.data?.header)
+                setDetails([])
                 setShowModal(false)
             }).catch(err=>{
                 errorFunction(err)
@@ -41,7 +42,7 @@ function AddHeader({ setShowModal, setHead }) {
                         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-state"
                     >
-                        <option>Select Status</option>
+                        <option value={''}>Select Status</option>
                         <option value={'A'}>A</option>
                         <option value={'I'}>I</option>
                     </select>

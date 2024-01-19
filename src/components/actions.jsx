@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Modal from './modal'
 
-function Actions({setHead}) {
+function Actions({setHead,setDetails}) {
 
     const [showModal, setShowModal] = useState(false);
     const [action,setAction] = useState('')
 
     return (
         <div className='flex buttons gap-4 bg-amber-300 font-medium hover:cursor-pointer'>
-            {showModal?<Modal setHead={action=='addHeader'?setHead:''} showModal={showModal} setShowModal={setShowModal} action={action}/>:null}
+            {showModal?<Modal setDetails={setDetails} setHead={action=='addHeader'?setHead:''} showModal={showModal} setShowModal={setShowModal} action={action}/>:null}
             <div onClick={()=>{
                 setAction('addHeader')
                 setShowModal(true)

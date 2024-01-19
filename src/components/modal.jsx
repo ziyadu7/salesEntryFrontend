@@ -3,7 +3,7 @@ import AddItem from './addItem'
 import InsertData from './insertData'
 import AddHeader from './addHeader'
 
-function Modal({showModal,setShowModal,action,setHead}) {
+function Modal({showModal,setShowModal,action,setHead,setDetails}) {
 
 
   return (
@@ -32,7 +32,7 @@ function Modal({showModal,setShowModal,action,setHead}) {
               </div>
 
               <div className="relative p-6 flex-auto">
-                {action=='addItem'?<AddItem setShowModal={setShowModal}/>:action=='insertData'?<InsertData setShowModal={setShowModal}/>:action=='addHeader'?<AddHeader setHead={setHead} setShowModal={setShowModal}/> :null}
+                {action=='addItem'?<AddItem setShowModal={setShowModal}/>:action=='insertData'?<InsertData setShowModal={setShowModal}/>:action=='addHeader'?<AddHeader setDetails={setDetails} setHead={setHead} setShowModal={setShowModal}/> :null}
               </div>
             </div>
           </div>

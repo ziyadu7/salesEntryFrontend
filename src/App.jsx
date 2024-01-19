@@ -27,7 +27,7 @@ function App() {
         <DetailTable details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
-        <Actions setHead={setHeader} />
+        <Actions setDetails={setDetails} setHead={setHeader} />
       </div>
     </div>
   )
