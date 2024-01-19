@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axiosInstance from '../axios/axios'
+import errorFunction from '../helper/errorHandling'
 
 function InsertData({setShowModal}) {
+
+    const [items,setItems] = useState([])
+
+    useEffect(()=>{
+        axiosInstance.get('/fetchItems').then(res=>{
+            setItems(res?.data?.items)
+        }).catch(err=>{
+            errorFunction(err)
+        })
+        return ()=>{
+            setItems([])
+        }
+    },[])
+
     return (
-        <div>InsertData
+        <div>
 
             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                 <button
