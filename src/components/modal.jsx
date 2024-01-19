@@ -1,8 +1,9 @@
 import React from 'react'
 import AddItem from './addItem'
 import InsertData from './insertData'
+import AddHeader from './addHeader'
 
-function Modal({showModal,setShowModal,action}) {
+function Modal({showModal,setShowModal,action,setHead}) {
 
 
   return (
@@ -18,7 +19,7 @@ function Modal({showModal,setShowModal,action}) {
 
               <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                 <h3 className="text-3xl font-semibold">
-                  {action=='addItem'?'Add Items':action=='insertData'?'Insert Data':null}
+                  {action=='addItem'?'Add Items':action=='insertData'?'Insert Data':action=='addHeader'?'Add Header':null}
                 </h3>
                 <button
                   className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -31,7 +32,7 @@ function Modal({showModal,setShowModal,action}) {
               </div>
 
               <div className="relative p-6 flex-auto">
-                {action=='addItem'?<AddItem setShowModal={setShowModal}/>:action=='insertData'?<InsertData setShowModal={setShowModal}/>:null}
+                {action=='addItem'?<AddItem setShowModal={setShowModal}/>:action=='insertData'?<InsertData setShowModal={setShowModal}/>:action=='addHeader'?<AddHeader setHead={setHead} setShowModal={setShowModal}/> :null}
               </div>
             </div>
           </div>
