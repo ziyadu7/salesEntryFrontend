@@ -15,12 +15,12 @@ function Actions({setHead,setDetails, header}) {
                 } } className='w-10 bg-amber-300 ps-6 h-14 items-center flex justify-center'>
                 New
             </div>
-            <div onClick={()=>{
+            {/* <div onClick={()=>{
                 setAction('insertData')
                 setShowModal(true)
                 } } className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
                 Insert
-            </div>
+            </div> */}
             <div className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
                 Save
             </div>

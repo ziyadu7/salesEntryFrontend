@@ -3,7 +3,7 @@ import axiosInstance from '../axios/axios'
 import errorFunction from '../helper/errorHandling'
 import toast from 'react-hot-toast'
 
-function InsertData({ setShowModal, header, setDetails }) {
+function InsertData({ setShowModal, header, setDetails, details }) {
 
     const [items, setItems] = useState([])
     const [qty, setQty] = useState('')
@@ -16,25 +16,26 @@ function InsertData({ setShowModal, header, setDetails }) {
         } else if (!header) {
             setErr("Select a header")
         } else {
-            axiosInstance.post('/addDetails', { qty, item, vrno: header.vrno }).then(res => {
-                toast.success(res?.data?.message)
-                setDetails(res?.data?.details)
-            }).catch(err => {
-                errorFunction(err)
-            })
+            setDetails({...details})
+            // axiosInstance.post('/addDetails', { qty, item, vrno: header.vrno }).then(res => {
+            //     toast.success(res?.data?.message)
+            //     setDetails(res?.data?.details)
+            // }).catch(err => {
+            //     errorFunction(err)
+            // })
         }
     }
 
-    useEffect(() => {
-        axiosInstance.get('/fetchItems').then(res => {
-            setItems(res?.data?.items)
-        }).catch(err => {
-            errorFunction(err)
-        })
-        return () => {
-            setItems([])
-        }
-    }, [])
+    // useEffect(() => {
+    //     axiosInstance.get('/fetchItems').then(res => {
+    //         setItems(res?.data?.items)
+    //     }).catch(err => {
+    //         errorFunction(err)
+    //     })
+    //     return () => {
+    //         setItems([])
+    //     }
+    // }, [])
 
     return (
         <div>
@@ -50,7 +51,7 @@ function InsertData({ setShowModal, header, setDetails }) {
                         >
                             {items.length > 0 ?
                                 items?.map(item => (
-                                    <option value={item?.itemcode} key={item?.itemcode}>{item?.itemname}</option>
+                                    <option value={item} key={item?.itemcode}>{item?.itemname}</option>
                                 ))
                                 : ''}
                         </select>

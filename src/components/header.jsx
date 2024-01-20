@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header({setSearch,searchData,head}) {
+function Header({setSearch,searchData,head,totalPrice}) {
     return (
         <div>
             <h1 className='w-full bg-yellow-300 border-b-2 border-black text-center font-semibold mb-2'>Header</h1>
@@ -26,7 +26,7 @@ function Header({setSearch,searchData,head}) {
                     </div>
                     <div className='flex'>
                         <label htmlFor="">Ac Amt </label>
-                        <input type="text" disabled value={head?.acamount} className='w-16 ms-1 border-black border-2 px-1' />
+                        <input type="text" disabled value={head?.acamount||totalPrice} className='w-16 ms-1 border-black border-2 px-1' />
                     </div>
                 </div>
                 <div className='flex justify-center gap-2 pt-5'>
