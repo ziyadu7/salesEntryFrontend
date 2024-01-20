@@ -3,7 +3,7 @@ import axiosInstance from '../axios/axios'
 import errorFunction from '../helper/errorHandling'
 import toast from 'react-hot-toast'
 
-function DetailTable({ header, details, setDetails, totalPrice, setTotalPrice }) {
+function DetailTable({ header, details, setDetails, totalPrice, setTotalPrice, setNewDetail, newDetail }) {
 
     const [items, setItems] = useState([])
     const [item, setItem] = useState({})
@@ -32,6 +32,7 @@ function DetailTable({ header, details, setDetails, totalPrice, setTotalPrice })
                 toast.error('Select or add a header')
             } else {
                 setTotalPrice(totalPrice + (item?.price * qty))
+                setNewDetail([...newDetail,{ vrno: header?.vrno, srno: details.length + 1, item, qty, rate: item?.price }])
                 setDetails([...details, { vrno: header?.vrno, srno: details.length + 1, item, qty, rate: item?.price }])
                 setItem({})
                 setQty(0)

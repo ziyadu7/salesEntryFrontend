@@ -17,9 +17,9 @@ function Header({ setSearch, searchData, head, totalPrice, setStatus, status }) 
                     <div className='flex'>
                         <label htmlFor="">Status :- </label>
                         <select onChange={(e) => setStatus(e?.target?.value)} name="" className='w-16 ms-1 border-black border-2' id="">
-                            <option selected value="">{head?.status||status}</option>
-                            <option value="">A</option>
-                            <option value="">I</option>
+                            <option selected value={head?.status}>{head?.status||status}</option>
+                            <option value="A">A</option>
+                            <option value="I">I</option>
                         </select>
                     </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from './modal'
 
-function Actions({setHead,setDetails, header}) {
+function Actions({setHead,setDetails, header, save}) {
 
     const [showModal, setShowModal] = useState(false);
     const [action,setAction] = useState('')
@@ -15,13 +15,7 @@ function Actions({setHead,setDetails, header}) {
                 } } className='w-10 bg-amber-300 ps-6 h-14 items-center flex justify-center'>
                 New
             </div>
-            {/* <div onClick={()=>{
-                setAction('insertData')
-                setShowModal(true)
-                } } className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
-                Insert
-            </div> */}
-            <div className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
+            <div onClick={save} className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>
                 Save
             </div>
             <div className='w-10 h-14 bg-amber-300 ps-6 items-center flex justify-center'>

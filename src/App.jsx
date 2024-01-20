@@ -10,8 +10,9 @@ function App() {
   const [search, setSearch] = useState(0)
   const [details, setDetails] = useState([])
   const [header, setHeader] = useState('')
-  const [totalPrice,setTotalPrice] = useState(0)
-  const [status,setStatus] = useState('A')
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [status, setStatus] = useState('A')
+  const [newDetail,setNewDetail] = useState([])
 
   function searchData() {
     if (search != 0) {
@@ -34,14 +35,29 @@ function App() {
       })
     }
   }
+
+  const save = () => {
+    if (!header || header == '') {
+      toast.error("Select header")
+    } else if(details?.length==0){
+      toast.error('Add datas')
+    }else {
+      axiosInstance.post('/saveData',{header,details:newDetail,status,totalPrice}).then(res=>{
+        toast.success(res?.data?.message)
+      }).catch(err=>{
+        errorFunction(err)
+      })
+    }
+  }
+
   return (
     <div className='Actions'>
       <div className='w-full'>
         <Header setSearch={setSearch} status={status} setStatus={setStatus} totalPrice={totalPrice} head={header} searchData={searchData} />
-        <DetailTable header={header} totalPrice={totalPrice} setTotalPrice={setTotalPrice} setDetails={setDetails} details={details} />
+        <DetailTable header={header} totalPrice={totalPrice} newDetail={newDetail} setNewDetail={setNewDetail} setTotalPrice={setTotalPrice} setDetails={setDetails} details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
-        <Actions setDetails={setDetails} header={header} setHead={setHeader} />
+        <Actions save={save} setDetails={setDetails} header={header} setHead={setHeader} />
       </div>
     </div>
   )
