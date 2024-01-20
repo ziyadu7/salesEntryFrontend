@@ -32,8 +32,8 @@ function DetailTable({ header, details, setDetails, totalPrice, setTotalPrice, s
                 toast.error('Select or add a header')
             } else {
                 setTotalPrice(totalPrice + (item?.price * qty))
-                setNewDetail([...newDetail,{ vrno: header?.vrno, srno: details.length + 1, item, qty, rate: item?.price }])
-                setDetails([...details, { vrno: header?.vrno, srno: details.length + 1, item, qty, rate: item?.price }])
+                setNewDetail([...newDetail,{ vrno: header?.vrno, srno: details.length + 1, itemDetails:item, qty, rate: item?.price }])
+                setDetails([...details, { vrno: header?.vrno, srno: details.length + 1, itemDetails:item, qty, rate: item?.price }])
                 setItem({})
                 setQty(0)
             }
@@ -75,10 +75,10 @@ function DetailTable({ header, details, setDetails, totalPrice, setTotalPrice, s
                                         {data?.srno}
                                     </td>
                                     <td className="px-6 py-4 border-2 border-black w-32">
-                                        {data?.item?.itemcode || data?.itemcode}
+                                        {data?.itemDetails?.itemcode || data?.itemcode}
                                     </td>
                                     <td className="px-6 py-4 border-2 border-black min-w-96">
-                                        {data?.item?.itemname || data?.itemname}
+                                        {data?.itemDetails?.itemname || data?.itemname}
                                     </td>
                                     <td className="px-6 py-4 border-2 border-black">
                                         {data?.qty}

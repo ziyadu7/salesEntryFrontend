@@ -17,7 +17,7 @@ function Header({ setSearch, searchData, head, totalPrice, setStatus, status }) 
                     <div className='flex'>
                         <label htmlFor="">Status :- </label>
                         <select onChange={(e) => setStatus(e?.target?.value)} name="" className='w-16 ms-1 border-black border-2' id="">
-                            <option selected value={head?.status}>{head?.status||status}</option>
+                            <option selected value={head?.status}>{head?.status || status}</option>
                             <option value="A">A</option>
                             <option value="I">I</option>
                         </select>
@@ -31,7 +31,7 @@ function Header({ setSearch, searchData, head, totalPrice, setStatus, status }) 
                     </div>
                     <div className='flex'>
                         <label htmlFor="">Ac Amt </label>
-                        <input type="text" disabled value={head?.acamount || totalPrice} className='w-16 ms-1 border-black border-2 px-1' />
+                        <input type="text" disabled value={totalPrice || head?.acamount} className='w-16 ms-1 border-black border-2 px-1' />
                     </div>
                 </div>
                 <div className='flex justify-center gap-2 pt-5'>

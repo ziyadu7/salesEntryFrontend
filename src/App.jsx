@@ -20,14 +20,15 @@ function App() {
         if ((res?.data?.details?.length == 0 && !res?.data?.header) && res?.data?.details?.header == undefined) {
           toast.error("Didn't find header")
         } else {
+          console.log(res?.data?.details);
           setDetails(res?.data?.details)
           if (res?.data?.details?.length == 0) {
             setHeader(res?.data?.header || {})
             setStatus(res?.data?.header?.status)
           } else {
-            setStatus(res?.data?.details?.header?.status)
-            setTotalPrice(res?.data?.details?.header?.acamount)
-            setHeader(res?.data?.details?.header)
+            setStatus(res?.data?.details[0]?.header?.status)
+            setTotalPrice(res?.data?.details[0]?.header?.acamount)
+            setHeader(res?.data?.details[0]?.header)
           }
         }
       }).catch(err => {
