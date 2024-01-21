@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Header from './components/header'
 import DetailTable from './components/detailTable'
 import Actions from './components/actions'
 import axiosInstance from './axios/axios'
 import errorFunction from './helper/errorHandling'
 import toast from 'react-hot-toast'
+import DeleteConfirmModal from './components/deleteConfirmModal'
 
 function App() {
   const [search, setSearch] = useState(0)
@@ -13,6 +14,7 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0)
   const [status, setStatus] = useState('A')
   const [newDetail, setNewDetail] = useState([])
+  const [showDeleteModal,setShowDeleteModal] = useState(false)
   
   function searchData() {
     if (search != 0) {
@@ -53,7 +55,7 @@ function App() {
 
   const deleteHeader =  ()=>{
     if (!header || header == '') {
-      toast.error("Select header")
+      toast.error("No header for delete")
     }else{
       axiosInstance.delete(`/delete/${header?.vrno}`).then(res=>{
         toast.success(res?.data?.message)
@@ -62,6 +64,7 @@ function App() {
         setNewDetail([])
         setSearch(0)
         setStatus('A')
+        setShowDeleteModal(false)
         setTotalPrice(0)
       }).catch(err=>{
         errorFunction(err)
@@ -84,11 +87,12 @@ function App() {
   return (
     <div className='Actions'>
       <div className='w-full' id='printableDiv'>
+      {showDeleteModal ? <DeleteConfirmModal setShowDeleteModal={setShowDeleteModal} deleteHeader={deleteHeader} /> : ''}
         <Header setSearch={setSearch} status={status} setStatus={setStatus} totalPrice={totalPrice} head={header} searchData={searchData} />
         <DetailTable header={header} totalPrice={totalPrice} newDetail={newDetail} setNewDetail={setNewDetail} setTotalPrice={setTotalPrice} setDetails={setDetails} details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
-        <Actions deleteHeader={deleteHeader} printData={printData} save={save} setDetails={setDetails} header={header} setHead={setHeader} />
+        <Actions deleteHeader={deleteHeader} setShowDeleteModal={setShowDeleteModal} printData={printData} save={save} setDetails={setDetails} header={header} setHead={setHeader} />
       </div>
     </div>
   )
