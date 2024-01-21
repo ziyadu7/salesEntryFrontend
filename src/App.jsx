@@ -51,6 +51,24 @@ function App() {
     }
   }
 
+  const deleteHeader =  ()=>{
+    if (!header || header == '') {
+      toast.error("Select header")
+    }else{
+      axiosInstance.delete(`/delete/${header?.vrno}`).then(res=>{
+        toast.success(res?.data?.message)
+        setHeader('')
+        setDetails([])
+        setNewDetail([])
+        setSearch(0)
+        setStatus('A')
+        setTotalPrice(0)
+      }).catch(err=>{
+        errorFunction(err)
+      })
+    }
+  }
+
   const printData = () => {
     const printContents = document.getElementById('printableDiv').innerHTML
     let originalContents = document.body.innerHTML
@@ -70,7 +88,7 @@ function App() {
         <DetailTable header={header} totalPrice={totalPrice} newDetail={newDetail} setNewDetail={setNewDetail} setTotalPrice={setTotalPrice} setDetails={setDetails} details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
-        <Actions printData={printData} save={save} setDetails={setDetails} header={header} setHead={setHeader} />
+        <Actions deleteHeader={deleteHeader} printData={printData} save={save} setDetails={setDetails} header={header} setHead={setHeader} />
       </div>
     </div>
   )

@@ -1,6 +1,5 @@
 import React from 'react'
 import AddItem from './addItem'
-import InsertData from './insertData'
 import AddHeader from './addHeader'
 
 function Modal({ showModal, setShowModal, action, setHead, setDetails, header }) {
