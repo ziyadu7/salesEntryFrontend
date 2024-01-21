@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/header'
 import DetailTable from './components/detailTable'
 import Actions from './components/actions'
@@ -12,8 +12,8 @@ function App() {
   const [header, setHeader] = useState('')
   const [totalPrice, setTotalPrice] = useState(0)
   const [status, setStatus] = useState('A')
-  const [newDetail,setNewDetail] = useState([])
-
+  const [newDetail, setNewDetail] = useState([])
+  
   function searchData() {
     if (search != 0) {
       axiosInstance.get(`/fetchDetails/${search}`).then(res => {
@@ -40,25 +40,37 @@ function App() {
   const save = () => {
     if (!header || header == '') {
       toast.error("Select header")
-    } else if(details?.length==0){
+    } else if (details?.length == 0) {
       toast.error('Add datas')
-    }else {
-      axiosInstance.post('/saveData',{header,details:newDetail,status,totalPrice}).then(res=>{
+    } else {
+      axiosInstance.post('/saveData', { header, details: newDetail, status, totalPrice }).then(res => {
         toast.success(res?.data?.message)
-      }).catch(err=>{
+      }).catch(err => {
         errorFunction(err)
       })
     }
   }
 
+  const printData = () => {
+    const printContents = document.getElementById('printableDiv').innerHTML
+    let originalContents = document.body.innerHTML
+    document.body.innerHTML = printContents
+    window.print({
+      color: true,  
+      landscape: true 
+    });
+    document.body.innerHTML = originalContents
+    location.reload()
+  }
+
   return (
     <div className='Actions'>
-      <div className='w-full'>
+      <div className='w-full' id='printableDiv'>
         <Header setSearch={setSearch} status={status} setStatus={setStatus} totalPrice={totalPrice} head={header} searchData={searchData} />
         <DetailTable header={header} totalPrice={totalPrice} newDetail={newDetail} setNewDetail={setNewDetail} setTotalPrice={setTotalPrice} setDetails={setDetails} details={details} />
       </div>
       <div className='buttonsParent md:ps-0 ps-3 h-full bg-amber-300 md:mt-20 '>
-        <Actions save={save} setDetails={setDetails} header={header} setHead={setHeader} />
+        <Actions printData={printData} save={save} setDetails={setDetails} header={header} setHead={setHeader} />
       </div>
     </div>
   )
